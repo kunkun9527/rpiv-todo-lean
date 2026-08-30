@@ -32,6 +32,12 @@ todo
 
 支持的 action 为 `create`、`list`、`get`、`update`、`delete` 和 `clear`。处理多步骤工作时，先创建任务，只保留一个 `in_progress` 任务，并在完成后将其标记为 `completed`。
 
+## 实测初始化上下文占用
+
+仅启用本扩展时，lean `todo` 工具会贡献约 **256 tokens** 的持续模型可见初始化上下文。相同条件下，固定版本的上游 `@juicesharp/rpiv-todo@2.7.1` 工具贡献 **904 tokens**，即减少 **648 tokens（71.7%）**。
+
+测量使用 Pi 0.84.4 和 `pi-context-view@0.4.3`，在全新隔离会话中只启用目标扩展，并排除 Pi 内置工具、skills、context files、消息及无关扩展。Context View 按 `ceil(字符数 / 4)` 估算，因此这些是可复现的上下文占用估值，不是 GPT tokenizer 的精确计数。未计入不会发送给模型的纯运行时 UI 和 slash commands。
+
 ## 版本
 
 上游依赖固定为 `@juicesharp/rpiv-todo@2.7.1` 和 `@juicesharp/rpiv-i18n@2.7.1`。
