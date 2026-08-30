@@ -32,6 +32,12 @@ todo
 
 Supported actions are `create`, `list`, `get`, `update`, `delete`, and `clear`. For multi-step work, create tasks, keep exactly one task `in_progress`, and mark it `completed` when finished.
 
+## Measured initialization footprint
+
+With only this extension enabled, the lean `todo` tool contributes an estimated **256 tokens** of recurring model-facing initialization context. The pinned upstream `@juicesharp/rpiv-todo@2.7.1` tool contributes **904 tokens** under the same conditions. That is **648 fewer tokens (71.7%)**.
+
+The measurement used Pi 0.84.4 and `pi-context-view@0.4.3` in a fresh isolated session, excluding Pi built-in tools, skills, context files, messages, and unrelated extensions. Context View estimates text as `ceil(characters / 4)`, so these are reproducible context-footprint estimates rather than exact GPT tokenizer counts. Runtime-only UI and slash commands are not included because they are not sent to the model.
+
 ## Versions
 
 Upstream dependencies are pinned to `@juicesharp/rpiv-todo@2.7.1` and `@juicesharp/rpiv-i18n@2.7.1`.
