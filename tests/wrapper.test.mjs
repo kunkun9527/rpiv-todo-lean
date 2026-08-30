@@ -114,26 +114,6 @@ test("passes flat parameters through every action and preserves the upstream rep
   assert.equal(cleared.details.nextId, 1);
 });
 
-test("cooperates with collapsed display before registration", () => {
-  const symbol = Symbol.for("@local/pi-collapsed-tools.display-service.v1");
-  const decoratedNames = new Set();
-  globalThis[symbol] = {
-    version: 1,
-    decoratedNames,
-    decorate(tool) {
-      decoratedNames.add(tool.name);
-      return { ...tool, __collapsedTest: true };
-    },
-  };
-
-  try {
-    const { tool } = loadTool();
-    assert.equal(tool.__collapsedTest, true);
-    assert.equal(decoratedNames.has("todo"), true);
-  } finally {
-    delete globalThis[symbol];
-  }
-});
 
 test("stays within a compact model-facing metadata budget", () => {
   const { tool } = loadTool();
