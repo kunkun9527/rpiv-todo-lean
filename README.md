@@ -1,6 +1,6 @@
 # rpiv-todo-lean
 
-> **Only ~256 model-facing initialization tokens — an extremely token-efficient Pi todo plugin.**
+> **Only ~256 initialization tokens (reduced from ~904 tokens).**
 > **Setup:** [Install the complete Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [简体中文](README.zh-CN.md)
