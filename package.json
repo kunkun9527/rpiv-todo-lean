@@ -1,10 +1,12 @@
 {
   "name": "rpiv-todo-lean",
-  "version": "2.7.1-lean.1",
-  "private": true,
+  "version": "2.7.1",
   "type": "module",
-  "description": "Token-lean Pi wrapper for rpiv-todo with the full task lifecycle preserved.",
+  "description": "An extremely token-efficient Pi todo plugin using only ~256 model-facing initialization tokens.",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "kunkun9527",
   "repository": {
     "type": "git",
@@ -20,6 +22,12 @@
     "rpiv",
     "todo",
     "token-efficient"
+  ],
+  "files": [
+    "index.ts",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
   ],
   "engines": {
     "node": ">=22.19.0"

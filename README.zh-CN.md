@@ -1,5 +1,8 @@
 # rpiv-todo-lean
 
+> **仅占用约 256 tokens：极度节省 Token 的 Pi todo 插件（模型可见初始化上下文）。**
+> **整套配置：** [查看 Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
+
 [English](README.md)
 
 [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo) 的 token 精简版 Pi 包装层。它保留完整的上游任务生命周期，同时减少模型可见元数据。

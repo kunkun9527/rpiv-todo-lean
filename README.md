@@ -1,5 +1,8 @@
 # rpiv-todo-lean
 
+> **Only ~256 model-facing initialization tokens — an extremely token-efficient Pi todo plugin.**
+> **Setup:** [Install the complete Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
+
 [简体中文](README.zh-CN.md)
 
 A token-lean Pi wrapper around [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo). It preserves the complete upstream task lifecycle while reducing model-facing metadata.
