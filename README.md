@@ -1,6 +1,6 @@
 # rpiv-todo-lean
 
-> **Only ~256 initialization tokens (reduced from ~904 tokens).**
+> **Lean Pi todo plugin, same functionality — only ~256 vs ~904 initialization tokens.**
 > [See my full setup for Pi](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [简体中文](README.zh-CN.md)

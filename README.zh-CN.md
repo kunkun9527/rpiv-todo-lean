@@ -1,6 +1,6 @@
 # rpiv-todo-lean
 
-> **仅需约 256 个初始化 tokens（从约 904 tokens 降低）。**
+> **Lean Pi todo 插件，功能相同：约 256 vs 904 个初始化 tokens。**
 > **整套配置：** [查看 Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [English](README.md)
