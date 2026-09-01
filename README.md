@@ -1,6 +1,6 @@
 # @ssk_dev/rpiv-todo-lean
 
-> **Lean Pi todo plugin with identical features: 256 initialization tokens, 72% lighter than original.**
+> **Lean Pi todo extension with identical features: 256 initialization tokens, 72% lighter than original.**
 > [See my full setup for Pi](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [简体中文](README.zh-CN.md)
