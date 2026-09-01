@@ -1,8 +1,8 @@
 {
-  "name": "rpiv-todo-lean",
+  "name": "@ssk_dev/rpiv-todo-lean",
   "version": "2.7.1",
   "type": "module",
-  "description": "Lean Pi todo plugin, same functionality — only ~256 vs ~904 initialization tokens.",
+  "description": "Lean Pi todo plugin, same functionality — 256 initialization tokens, 72% fewer than the original.",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

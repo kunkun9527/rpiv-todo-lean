@@ -1,6 +1,6 @@
-# rpiv-todo-lean
+# @ssk_dev/rpiv-todo-lean
 
-> **Lean Pi todo plugin, same functionality — only ~256 vs ~904 initialization tokens.**
+> **Lean Pi todo plugin, same functionality — 256 initialization tokens, 72% fewer than the original.**
 > [See my full setup for Pi](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [简体中文](README.zh-CN.md)
@@ -20,7 +20,7 @@ The wrapper exposes the same `todo` tool and native flat schema, but removes ver
 ## Install
 
 ```bash
-pi install git:github.com/kunkun9527/rpiv-todo-lean
+pi install npm:@ssk_dev/rpiv-todo-lean
 ```
 
 Do not load it together with another `rpiv-todo` wrapper, or `todo` may be registered twice.
