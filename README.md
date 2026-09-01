@@ -1,45 +1,47 @@
 # @ssk_dev/rpiv-todo-lean
 
-> **Lean Pi todo plugin, same functionality — 256 initialization tokens, 72% fewer than the original.**
+> **Lean Pi todo plugin with identical features: 256 initialization tokens, 72% lighter than original.**
 > [See my full setup for Pi](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [简体中文](README.zh-CN.md)
 
-A token-lean Pi wrapper around [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo). It preserves the complete upstream task lifecycle while reducing model-facing metadata.
+A lightweight Pi wrapper for [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo). It preserves the complete task management engine while drastically reducing tool description overhead in the system prompt.
 
-## What it keeps
+## Core Features
 
-- Task creation, listing, retrieval, updates, deletion, and clearing.
-- Status transitions, dependencies, metadata, replay envelopes, commands, and lifecycle behavior.
-- The short safety rules needed to keep one task in progress and complete work promptly.
+* Full task lifecycle: Supports creating, listing, viewing, updating, deleting, and clearing tasks.
+* Dependencies and tracking: Manages status transitions, dependencies, metadata, commands, and replay logs.
+* Concise schema: Keeps the native flat schema while removing repetitive field documentation and wordy prompt guidelines.
 
-## Why it is lean
-
-The wrapper exposes the same `todo` tool and native flat schema, but removes verbose schema-field descriptions and replaces the provider-facing prose with concise guidance. Runtime behavior remains in the pinned upstream package.
-
-## Install
+## Installation
 
 ```bash
 pi install npm:@ssk_dev/rpiv-todo-lean
 ```
 
-Do not load it together with another `rpiv-todo` wrapper, or `todo` may be registered twice.
+Do not load this alongside another `rpiv-todo` wrapper to avoid registering duplicate tools.
 
-## Use
+## Usage
 
-The model sees one tool:
+The model interacts with a single tool:
 
 ```text
 todo
 ```
 
-Supported actions are `create`, `list`, `get`, `update`, `delete`, and `clear`. For multi-step work, create tasks, keep exactly one task `in_progress`, and mark it `completed` when finished.
+Supported actions include `create`, `list`, `get`, `update`, `delete`, and `clear`. For multi-step tasks, create the items, keep exactly one task `in_progress`, and mark it `completed` when finished.
 
-## Measured initialization footprint
+## Context Footprint Benchmark
 
-With only this extension enabled, the lean `todo` tool contributes an estimated **256 tokens** of recurring model-facing initialization context. The pinned upstream `@juicesharp/rpiv-todo@2.7.1` tool contributes **904 tokens** under the same conditions. That is **648 fewer tokens (71.7%)**.
+With only this extension enabled, its recurring initialization overhead in the model context is:
 
-The measurement used Pi 0.84.4 and `pi-context-view@0.4.3` in a fresh isolated session, excluding Pi built-in tools, skills, context files, messages, and unrelated extensions. Context View estimates text as `ceil(characters / 4)`, so these are reproducible context-footprint estimates rather than exact GPT tokenizer counts. Runtime-only UI and slash commands are not included because they are not sent to the model.
+| Model-facing tool | Lean | Upstream `@juicesharp/rpiv-todo@2.7.1` |
+| --- | ---: | ---: |
+| `todo` | **256** | **904** |
+
+This saves **648 tokens (71.7%)** compared to the pinned upstream package.
+
+The benchmark was measured on Pi 0.84.4 with `pi-context-view@0.4.3` in a fresh isolated session, excluding built-in tools, skills, context files, and unrelated extensions. Context View estimates tokens as `ceil(characters / 4)`. Pure runtime UI elements and slash commands are excluded as they are not sent to the model.
 
 ## Versions
 
@@ -52,6 +54,6 @@ npm ci
 npm run check
 ```
 
-## License and upstream
+## License
 
 MIT. This project wraps the MIT-licensed [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo).
