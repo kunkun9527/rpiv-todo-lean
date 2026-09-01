@@ -1,7 +1,7 @@
 # rpiv-todo-lean
 
 > **Only ~256 initialization tokens (reduced from ~904 tokens).**
-> **Setup:** [Install the complete Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
+> [See my full setup for Pi](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [简体中文](README.zh-CN.md)
 
