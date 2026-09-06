@@ -1,6 +1,6 @@
 # @ssk_dev/rpiv-todo-lean
 
-> **Pi 任务管理扩展精简版，保留全部功能，仅需 246 初始化 Token，相比原版减少 72.8%。**
+> **Pi 任务管理扩展精简版，保留全部功能，仅需 246 初始化 Token，相比当前上游减少 72.8%。**
 > **完整配置参考：** [查看 Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [English](README.md)
@@ -35,19 +35,16 @@ todo
 
 单独启用本扩展时，注入到模型初始上下文中的 Token 占用实测如下：
 
-| 模型可见工具 | Lean 精简版 | 原版 `@juicesharp/rpiv-todo@2.7.1` |
+| 模型可见工具 | Lean 精简版 | 原版 `@juicesharp/rpiv-todo@2.9.0` |
 | --- | ---: | ---: |
 | `todo` | **246** | **904** |
 
-相比固定版本的上游扩展，初始开销减少了 **658 tokens（72.8%）**。
-
+相比当前上游扩展，初始开销减少了 **658 tokens（72.8%）**。
 测试环境为 Pi 0.84.4 与 `pi-context-view@0.4.3` 独立会话，排除了 Pi 内置工具、Skills、上下文文件与无关扩展。Context View 按 `ceil(字符数 / 4)` 估算。未计入不会发送给模型的纯运行时 UI 与 Slash 命令。
-
 ## 版本说明
 
-- Lean 包装层：`2.7.8`
-上游依赖锁定为 `@juicesharp/rpiv-todo@2.7.1` 和 `@juicesharp/rpiv-i18n@2.7.1`。
-
+- Lean 包装层：`2.9.0`
+上游依赖锁定为 `@juicesharp/rpiv-todo@2.9.0` 和 `@juicesharp/rpiv-i18n@2.9.0`。
 ## 本地开发
 
 ```bash
