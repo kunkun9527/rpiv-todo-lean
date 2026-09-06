@@ -55,7 +55,7 @@ test("exposes the native flat schema without verbose field descriptions", () => 
   const { pi, tool } = loadTool();
 
   assert.equal(tool.name, "todo");
-  assert.equal(tool.description, "Track tasks for multi-step work.");
+  assert.equal(tool.description, "Track tasks for multi-step work. Every call requires action: create|update|list|get|delete|clear.");
   assert.equal(tool.promptSnippet, "");
   assert.equal(tool.promptGuidelines.length, 1);
   assert.deepEqual(findDescriptions(tool.parameters), []);
@@ -64,6 +64,8 @@ test("exposes the native flat schema without verbose field descriptions", () => 
     "addBlockedBy", "removeBlockedBy", "owner", "metadata", "id", "includeDeleted",
   ]);
   assert.deepEqual(tool.parameters.required, ["action"]);
+  assert.equal(tool.prepareArguments?.({ subject: "inferred create" }).action, "create");
+  assert.equal(tool.prepareArguments?.({ id: 1, status: "completed" }).action, "update");
   assert.deepEqual(tool.parameters.properties.action.enum, ["create", "update", "list", "get", "delete", "clear"]);
   assert.deepEqual(tool.parameters.properties.status.enum, ["pending", "in_progress", "completed", "deleted"]);
   assert.equal(pi.commands.some(({ name }) => name === "todos"), true);

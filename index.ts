@@ -20,11 +20,23 @@ function decorateWithCollapsedDisplay<T extends CollapsedDisplayTool>(tool: T): 
 		: tool;
 }
 
-const TOOL_DESCRIPTION = "Track tasks for multi-step work.";
+const TOOL_DESCRIPTION = "Track tasks for multi-step work. Every call requires action: create|update|list|get|delete|clear.";
 const PROMPT_SNIPPET = "";
 const PROMPT_GUIDELINES = [
-	"Use for 3+ steps. create needs subject; update/get/delete need id; update also needs changed fields; list may filter by status/includeDeleted; clear resets all. Status: pending|in_progress|completed|deleted. Use blockedBy on create and addBlockedBy/removeBlockedBy on update. Keep exactly one in_progress and complete tasks as soon as they are done.",
+	"Use for 3+ steps. Every call requires action. create needs subject; update/get/delete need id; update also needs changed fields; list may filter by status/includeDeleted; clear resets all. Status: pending|in_progress|completed|deleted. Use blockedBy on create and addBlockedBy/removeBlockedBy on update. Keep exactly one in_progress and complete tasks as soon as they are done.",
 ];
+
+function prepareTodoArguments(args: unknown): unknown {
+	if (!args || typeof args !== "object" || Array.isArray(args)) return args;
+	const input = { ...(args as Record<string, unknown>) };
+	if (input.action !== undefined) return input;
+	const mutableFields = [
+		"subject", "description", "activeForm", "status", "owner", "metadata", "addBlockedBy", "removeBlockedBy",
+	];
+	if (input.id !== undefined && mutableFields.some((field) => field in input)) input.action = "update";
+	else if (typeof input.subject === "string") input.action = "create";
+	return input;
+}
 
 function removeSchemaDescriptions(value: unknown, seen = new Set<object>(), isPropertiesMap = false): void {
 	if (value === null || typeof value !== "object" || seen.has(value)) return;
@@ -47,6 +59,7 @@ export default function (pi: ExtensionAPI): void {
 							description: TOOL_DESCRIPTION,
 							promptSnippet: PROMPT_SNIPPET,
 							promptGuidelines: PROMPT_GUIDELINES,
+							prepareArguments: (args) => prepareTodoArguments(tool.prepareArguments?.(args) ?? args) as never,
 						}));
 					}
 					return target.registerTool(decorateWithCollapsedDisplay(tool));
