@@ -1,6 +1,6 @@
 # @ssk_dev/rpiv-todo-lean
 
-> **Lean Pi todo extension with full features: 256 initial tokens (72% fewer than original).**
+> **Lean Pi todo extension with full features: 279 initial tokens (69% fewer than original).**
 > [See my full setup for Pi](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [简体中文](README.zh-CN.md)
@@ -37,15 +37,15 @@ With only this extension enabled, its recurring initialization overhead in the m
 
 | Model-facing tool | Lean | Upstream `@juicesharp/rpiv-todo@2.7.1` |
 | --- | ---: | ---: |
-| `todo` | **256** | **904** |
+| `todo` | **279** | **904** |
 
-This saves **648 tokens (71.7%)** compared to the pinned upstream package.
+This saves **625 tokens (69.1%)** compared to the pinned upstream package.
 
 The benchmark was measured on Pi 0.84.4 with `pi-context-view@0.4.3` in a fresh isolated session, excluding built-in tools, skills, context files, and unrelated extensions. Context View estimates tokens as `ceil(characters / 4)`. Pure runtime UI elements and slash commands are excluded as they are not sent to the model.
 
 ## Measured initialization footprint
 
-With only this extension enabled, the lean `todo` tool contributes an estimated **256 tokens** of recurring model-facing initialization context. The pinned upstream `@juicesharp/rpiv-todo@2.7.1` tool contributes **904 tokens** under the same conditions. That is **648 fewer tokens (71.7%)**.
+With only this extension enabled, the lean `todo` tool contributes an estimated **279 tokens** of recurring model-facing initialization context. The pinned upstream `@juicesharp/rpiv-todo@2.7.1` tool contributes **904 tokens** under the same conditions. That is **625 fewer tokens (69.1%)**.
 
 The measurement used Pi 0.84.4 and `pi-context-view@0.4.3` in a fresh isolated session, excluding Pi built-in tools, skills, context files, messages, and unrelated extensions. Context View estimates text as `ceil(characters / 4)`, so these are reproducible context-footprint estimates rather than exact GPT tokenizer counts. Runtime-only UI and slash commands are not included because they are not sent to the model.
 

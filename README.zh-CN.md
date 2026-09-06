@@ -1,6 +1,6 @@
 # @ssk_dev/rpiv-todo-lean
 
-> **Pi 任务管理扩展精简版，保留全部功能，仅需 256 初始化 Token，相比原版减少 72%。**
+> **Pi 任务管理扩展精简版，保留全部功能，仅需 279 初始化 Token，相比原版减少 69%。**
 > **完整配置参考：** [查看 Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [English](README.md)
@@ -37,9 +37,9 @@ todo
 
 | 模型可见工具 | Lean 精简版 | 原版 `@juicesharp/rpiv-todo@2.7.1` |
 | --- | ---: | ---: |
-| `todo` | **256** | **904** |
+| `todo` | **279** | **904** |
 
-相比固定版本的上游扩展，初始开销减少了 **648 tokens（71.7%）**。
+相比固定版本的上游扩展，初始开销减少了 **625 tokens（69.1%）**。
 
 测试环境为 Pi 0.84.4 与 `pi-context-view@0.4.3` 独立会话，排除了 Pi 内置工具、Skills、上下文文件与无关扩展。Context View 按 `ceil(字符数 / 4)` 估算。未计入不会发送给模型的纯运行时 UI 与 Slash 命令。
 
