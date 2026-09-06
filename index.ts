@@ -20,10 +20,10 @@ function decorateWithCollapsedDisplay<T extends CollapsedDisplayTool>(tool: T): 
 		: tool;
 }
 
-const TOOL_DESCRIPTION = "Track tasks for multi-step work. Every call requires action: create|update|list|get|delete|clear.";
+const TOOL_DESCRIPTION = "Task tracker. Include action: create|update|list|get|delete|clear; update/get/delete need id; create needs subject.";
 const PROMPT_SNIPPET = "";
 const PROMPT_GUIDELINES = [
-	"Use for 3+ steps. Every call requires action. create needs subject; update/get/delete need id; update also needs changed fields; list may filter by status/includeDeleted; clear resets all. Status: pending|in_progress|completed|deleted. Use blockedBy on create and addBlockedBy/removeBlockedBy on update. Keep exactly one in_progress and complete tasks as soon as they are done.",
+	"Use for 3+ steps. Include action on every call. create needs subject; update/get/delete need id; update needs changed fields; list accepts status/includeDeleted; clear removes all. Status: pending|in_progress|completed|deleted. create supports blockedBy; update supports addBlockedBy/removeBlockedBy. Keep one in_progress and complete tasks promptly.",
 ];
 
 function prepareTodoArguments(args: unknown): unknown {

@@ -55,7 +55,7 @@ test("exposes the native flat schema without verbose field descriptions", () => 
   const { pi, tool } = loadTool();
 
   assert.equal(tool.name, "todo");
-  assert.equal(tool.description, "Track tasks for multi-step work. Every call requires action: create|update|list|get|delete|clear.");
+  assert.equal(tool.description, "Task tracker. Include action: create|update|list|get|delete|clear; update/get/delete need id; create needs subject.");
   assert.equal(tool.promptSnippet, "");
   assert.equal(tool.promptGuidelines.length, 1);
   assert.deepEqual(findDescriptions(tool.parameters), []);
