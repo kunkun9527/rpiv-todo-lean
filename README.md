@@ -1,6 +1,8 @@
 # @ssk_dev/rpiv-todo-lean
 
-> **Lean Pi todo extension with full features: 246 initial tokens (72.8% fewer than original).**
+<!-- token-benchmark:summary:start -->
+> **Token benchmark: Lean 246, upstream `@juicesharp/rpiv-todo@2.10.1` 904 — 72.8% fewer.**
+<!-- token-benchmark:summary:end -->
 > [See my full setup for Pi](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [简体中文](README.zh-CN.md)
@@ -33,19 +35,17 @@ Supported actions include `create`, `list`, `get`, `update`, `delete`, and `clea
 
 ## Context Footprint Benchmark
 
-With only this extension enabled, its recurring initialization overhead in the model context is:
+<!-- token-benchmark:benchmark:start -->
+With only this extension enabled, its recurring model-facing initialization contribution is:
 
-| Model-facing tool | Lean | Upstream `@juicesharp/rpiv-todo@2.10.1` |
-| --- | ---: | ---: |
-| `todo` | **246** | **904** |
+| Variant | Tool and prompt contribution | Total |
+| --- | --- | ---: |
+| Lean `@ssk_dev/rpiv-todo-lean@2.10.1` | `todo` (246) | **246** |
+| Upstream `@juicesharp/rpiv-todo@2.10.1` | `todo` (904) | **904** |
 
-This saves **658 tokens (72.8%)** compared to the current upstream package.
-The benchmark was measured on Pi 0.85.1 with `measure-plugin-tokens-v3.mjs` in a fresh isolated session, excluding built-in tools, skills, context files, and unrelated extensions. Token estimates use `ceil(characters / 4)`. Pure runtime UI elements and slash commands are excluded as they are not sent to the model.
-
-## Measured initialization footprint
-
-With only this extension enabled, the lean `todo` tool contributes an estimated **246 tokens** of recurring model-facing initialization context. The current upstream `@juicesharp/rpiv-todo@2.10.1` tool contributes **904 tokens** under the same conditions. That is **658 fewer tokens (72.8%)**.
-The measurement used Pi 0.85.1 and `measure-plugin-tokens-v3.mjs` in a fresh isolated session, excluding Pi built-in tools, skills, context files, messages, and unrelated extensions. Token estimates use `ceil(characters / 4)`, so these are reproducible context-footprint estimates rather than exact tokenizer counts. Runtime-only UI and slash commands are not included because they are not sent to the model.
+This saves **658 tokens (72.8%)**.
+Measured with Pi 0.85.1 in separate temporary processes with empty configuration. Built-in tools, skills, context files, messages, unrelated extensions, runtime UI, and slash commands are excluded. Tokens use `ceil(characters / 4)`.
+<!-- token-benchmark:benchmark:end -->
 
 ## Versions
 

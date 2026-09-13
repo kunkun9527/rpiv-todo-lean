@@ -1,6 +1,8 @@
 # @ssk_dev/rpiv-todo-lean
 
-> **Pi 任务管理扩展精简版，保留全部功能，仅需 246 初始化 Token，相比当前上游减少 72.8%。**
+<!-- token-benchmark:summary:start -->
+> **Token 基准：Lean 246，上游 `@juicesharp/rpiv-todo@2.10.1` 904，减少 72.8%。**
+<!-- token-benchmark:summary:end -->
 > **完整配置参考：** [查看 Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
 
 [English](README.md)
@@ -33,14 +35,17 @@ todo
 
 ## 初始化上下文占用对比
 
-单独启用本扩展时，注入到模型初始上下文中的 Token 占用实测如下：
+<!-- token-benchmark:benchmark:start -->
+单独启用本扩展时，模型可见的常驻初始化上下文如下：
 
-| 模型可见工具 | Lean 精简版 | 原版 `@juicesharp/rpiv-todo@2.10.1` |
-| --- | ---: | ---: |
-| `todo` | **246** | **904** |
+| 版本 | 工具与 Prompt 构成 | 合计 |
+| --- | --- | ---: |
+| Lean `@ssk_dev/rpiv-todo-lean@2.10.1` | `todo` (246) | **246** |
+| 上游 `@juicesharp/rpiv-todo@2.10.1` | `todo` (904) | **904** |
 
-相比当前上游扩展，初始开销减少了 **658 tokens（72.8%）**。
-测试环境为 Pi 0.85.1 与 `measure-plugin-tokens-v3.mjs` 独立会话，排除了 Pi 内置工具、Skills、上下文文件与无关扩展。Token 按 `ceil(字符数 / 4)` 估算。未计入不会发送给模型的纯运行时 UI 与 Slash 命令。
+节省 **658 tokens（72.8%）**。
+测量环境为 Pi 0.85.1 的独立临时进程与空白配置。排除内置工具、Skills、上下文文件、消息、无关扩展、运行时 UI 与 Slash Commands；Token 按 `ceil(字符数 / 4)` 估算。
+<!-- token-benchmark:benchmark:end -->
 
 ## 版本说明
 
