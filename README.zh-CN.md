@@ -1,7 +1,7 @@
 # @ssk_dev/rpiv-todo-lean
 
 <!-- token-benchmark:summary:start -->
-> **Token 基准：Lean 248，上游 `@juicesharp/rpiv-todo@2.10.1` 904，减少 72.6%。**
+> **Token 基准：Lean 248，上游 `@juicesharp/rpiv-todo@2.11.0` 904，减少 72.6%。**
 <!-- token-benchmark:summary:end -->
 > **完整配置参考：** [查看 Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
 
@@ -40,8 +40,8 @@ todo
 
 | 版本 | 工具与 Prompt 构成 | 合计 |
 | --- | --- | ---: |
-| Lean `@ssk_dev/rpiv-todo-lean@2.10.4` | `todo` (248) | **248** |
-| 上游 `@juicesharp/rpiv-todo@2.10.1` | `todo` (904) | **904** |
+| Lean `@ssk_dev/rpiv-todo-lean@2.11.0` | `todo` (248) | **248** |
+| 上游 `@juicesharp/rpiv-todo@2.11.0` | `todo` (904) | **904** |
 
 节省 **656 tokens（72.6%）**。
 测量环境为 Pi 0.87.1 的独立临时进程、空白工作目录与空白配置。排除内置工具、Skills、上下文文件、会话历史、用户消息、无关扩展、运行时 UI 与 Slash Commands；计入扩展的 `before_agent_start` 注入。Token 是按 `ceil(字符数 / 4)` 计算的固定字符代理估算，并非模型 tokenizer 实际计费值。
@@ -49,8 +49,8 @@ todo
 
 ## 版本说明
 
-- Lean 包装层：`2.10.4`
-上游依赖锁定为 `@juicesharp/rpiv-todo@2.10.1` 和 `@juicesharp/rpiv-i18n@2.10.1`。
+- Lean 包装层：`2.11.0`
+上游依赖锁定为 `@juicesharp/rpiv-todo@2.11.0` 和 `@juicesharp/rpiv-i18n@2.11.0`。
 
 ## 本地开发
 
