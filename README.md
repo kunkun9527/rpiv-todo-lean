@@ -40,7 +40,7 @@ With only this extension enabled, its recurring model-facing initialization cont
 
 | Variant | Tool and prompt contribution | Total |
 | --- | --- | ---: |
-| Lean `@ssk_dev/rpiv-todo-lean@2.12.0` | `todo` (250) | **250** |
+| Lean `@ssk_dev/rpiv-todo-lean@2.12.1` | `todo` (250) | **250** |
 | Upstream `@juicesharp/rpiv-todo@2.12.0` | `todo` (904) | **904** |
 
 This saves **654 tokens (72.3%)**.
@@ -49,7 +49,7 @@ Measured with Pi 1.0.0 in separate temporary processes with empty working direct
 
 ## Versions
 
-- Lean wrapper: `2.12.0`
+- Lean wrapper: `2.12.1`
 Upstream dependencies are pinned to `@juicesharp/rpiv-todo@2.12.0` and `@juicesharp/rpiv-i18n@2.12.0`.
 
 ## Development

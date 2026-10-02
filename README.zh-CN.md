@@ -40,7 +40,7 @@ todo
 
 | 版本 | 工具与 Prompt 构成 | 合计 |
 | --- | --- | ---: |
-| Lean `@ssk_dev/rpiv-todo-lean@2.12.0` | `todo` (250) | **250** |
+| Lean `@ssk_dev/rpiv-todo-lean@2.12.1` | `todo` (250) | **250** |
 | 上游 `@juicesharp/rpiv-todo@2.12.0` | `todo` (904) | **904** |
 
 节省 **654 tokens（72.3%）**。
@@ -49,7 +49,7 @@ todo
 
 ## 版本说明
 
-- Lean 包装层：`2.12.0`
+- Lean 包装层：`2.12.1`
 上游依赖锁定为 `@juicesharp/rpiv-todo@2.12.0` 和 `@juicesharp/rpiv-i18n@2.12.0`。
 
 ## 本地开发
