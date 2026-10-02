@@ -1,6 +1,6 @@
 {
   "name": "@ssk_dev/rpiv-todo-lean",
-  "version": "2.11.1",
+  "version": "2.12.0",
   "type": "module",
   "description": "Lean Pi todo extension with full features: 246 initial tokens (72.8% fewer than current upstream).",
   "license": "MIT",
@@ -38,13 +38,14 @@
     "check": "npm run typecheck && npm test"
   },
   "dependencies": {
-    "@juicesharp/rpiv-i18n": "2.11.0",
-    "@juicesharp/rpiv-todo": "2.11.0"
+    "@juicesharp/rpiv-i18n": "2.12.0",
+    "@juicesharp/rpiv-todo": "2.12.0"
   },
   "peerDependencies": {
     "@earendil-works/pi-ai": ">=0.84.1 <1.0.0",
     "@earendil-works/pi-coding-agent": ">=0.84.1 <1.0.0",
-    "@earendil-works/pi-tui": ">=0.84.1 <1.0.0"
+    "@earendil-works/pi-tui": ">=0.84.1 <1.0.0",
+    "typebox": "*"
   },
   "devDependencies": {
     "@earendil-works/pi-ai": "0.84.3",
