@@ -6,7 +6,7 @@ const jiti = createJiti(import.meta.url, { moduleCache: false });
 const extensionModule = await jiti.import("../index.ts");
 const extension = extensionModule.default ?? extensionModule;
 const { __resetRpcSessions } = extensionModule;
-const store = await jiti.import("@juicesharp/rpiv-todo/state/store.js");
+const store = await jiti.import("@juicesharp/rpiv-todo/state/store.ts");
 const { __resetState } = store;
 
 const mockTheme = {
