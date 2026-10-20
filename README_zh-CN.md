@@ -46,7 +46,7 @@ pi install npm:@ssk_dev/rpiv-todo-lean
 todo
 ```
 
-支持的操作包括 `create`、`list`、`get`、`update`、`delete` 和 `clear`。处理多步骤工作时，先创建任务列表，确保始终只有一个 `in_progress` 任务，并在处理完毕后标记为 `completed`。
+支持的操作包括 `create`、`list`、`get`、`update`、`delete` 和 `clear`。处理多步骤工作时，先创建任务列表，每一步开始前标记为 `in_progress`，完成后立即标记为 `completed`；一次只处理一步，不要留到最后批量标记。
 
 ## 版本说明
 

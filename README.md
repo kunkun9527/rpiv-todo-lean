@@ -46,7 +46,7 @@ The model interacts with a single tool:
 todo
 ```
 
-Supported actions include `create`, `list`, `get`, `update`, `delete`, and `clear`. For multi-step tasks, create the items, keep exactly one task `in_progress`, and mark it `completed` when finished.
+Supported actions include `create`, `list`, `get`, `update`, `delete`, and `clear`. For multi-step tasks, create the items, set each step `in_progress` before starting it, and mark it `completed` as soon as it finishes — one at a time, never batched at the end.
 
 ## Versions
 
