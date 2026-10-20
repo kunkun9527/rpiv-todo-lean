@@ -16,7 +16,7 @@
 
 | 版本 | 工具与 Prompt 构成 | 合计 |
 | --- | --- | ---: |
-| Lean `@ssk_dev/rpiv-todo-lean@2.13.11` | `todo` (268) | **268** |
+| Lean `@ssk_dev/rpiv-todo-lean@2.13.12` | `todo` (268) | **268** |
 | 上游 `@juicesharp/rpiv-todo@2.13.9` | `todo` (904) | **904** |
 
 节省 **636 tokens（70.4%）**。
@@ -46,11 +46,11 @@ pi install npm:@ssk_dev/rpiv-todo-lean
 todo
 ```
 
-支持的操作包括 `create`、`list`、`get`、`update`、`delete` 和 `clear`。处理多步骤工作时，先创建任务列表，每一步开始前标记为 `in_progress`，完成后立即标记为 `completed`；一次只处理一步，不要留到最后批量标记。
+支持的操作包括 `create`、`list`、`get`、`update`、`delete` 和 `clear`。处理多步骤工作时，先创建任务列表，每一步开始前标记为 `in_progress`，完成后立即标记为 `completed`；一次只处理一步，不要留到最后批量标记。缺少 `action` 时仅在无歧义时自动推断：有 `subject` → `create`，`id` 加待修改字段 → `update`，只有 `id` → `get`；`delete`、`clear`、`list` 永不猜测。
 
 ## 版本说明
 
-- Lean 包装层：`2.13.11`
+- Lean 包装层：`2.13.12`
 - 上游依赖锁定为 `@juicesharp/rpiv-todo@2.13.9` 和 `@juicesharp/rpiv-i18n@2.13.9`。
 
 ## 本地开发

@@ -40,6 +40,7 @@ function prepareTodoArguments(args: unknown): unknown {
 	];
 	if (input.id !== undefined && mutableFields.some((field) => field in input)) input.action = "update";
 	else if (typeof input.subject === "string") input.action = "create";
+	else if (input.id !== undefined && Object.keys(input).every((key) => key === "id" || key === "includeDeleted")) input.action = "get";
 	return input;
 }
 

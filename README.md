@@ -16,7 +16,7 @@ With only this extension enabled, its recurring model-facing initialization cont
 
 | Variant | Tool and prompt contribution | Total |
 | --- | --- | ---: |
-| Lean `@ssk_dev/rpiv-todo-lean@2.13.11` | `todo` (268) | **268** |
+| Lean `@ssk_dev/rpiv-todo-lean@2.13.12` | `todo` (268) | **268** |
 | Upstream `@juicesharp/rpiv-todo@2.13.9` | `todo` (904) | **904** |
 
 This saves **636 tokens (70.4%)**.
@@ -46,11 +46,11 @@ The model interacts with a single tool:
 todo
 ```
 
-Supported actions include `create`, `list`, `get`, `update`, `delete`, and `clear`. For multi-step tasks, create the items, set each step `in_progress` before starting it, and mark it `completed` as soon as it finishes — one at a time, never batched at the end.
+Supported actions include `create`, `list`, `get`, `update`, `delete`, and `clear`. For multi-step tasks, create the items, set each step `in_progress` before starting it, and mark it `completed` as soon as it finishes — one at a time, never batched at the end. A missing `action` is inferred only when unambiguous: `subject` → `create`, `id` plus fields to change → `update`, a bare `id` → `get`; `delete`, `clear` and `list` are never guessed.
 
 ## Versions
 
-- Lean wrapper: `2.13.11`
+- Lean wrapper: `2.13.12`
 - Upstream dependencies are pinned to `@juicesharp/rpiv-todo@2.13.9` and `@juicesharp/rpiv-i18n@2.13.9`.
 
 ## Development

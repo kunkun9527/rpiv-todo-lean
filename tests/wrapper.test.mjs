@@ -149,3 +149,30 @@ test("stays within a compact model-facing metadata budget", () => {
 
   assert.ok(metadata.length <= 1200, `metadata is ${metadata.length} chars`);
 });
+
+test("prepareArguments infers get only for a bare id and never infers destructive or list actions", async () => {
+  const { Value } = await import("typebox/value");
+  const { tool } = loadTool();
+  const prepare = (args) => tool.prepareArguments(args);
+  const valid = (args) => Value.Check(tool.parameters, args);
+
+  const bare = { id: 3 };
+  assert.deepEqual(prepare(bare), { id: 3, action: "get" });
+  assert.deepEqual(bare, { id: 3 });
+  assert.equal(valid(prepare(bare)), true);
+  assert.deepEqual(prepare({ id: 3, includeDeleted: true }), { id: 3, includeDeleted: true, action: "get" });
+  assert.deepEqual(prepare(prepare(bare)), { id: 3, action: "get" });
+
+  // Mutable fields keep the existing update rule; explicit actions are never rewritten.
+  assert.equal(prepare({ id: 3, status: "completed" }).action, "update");
+  assert.equal(prepare({ id: 3, subject: "x" }).action, "update");
+  for (const action of ["delete", "clear", "list", "update"]) {
+    assert.deepEqual(prepare({ id: 3, action }), { id: 3, action });
+  }
+
+  // Ambiguous or non-id input stays untouched and still fails validation.
+  for (const args of [{}, { includeDeleted: true }, { status: "pending" }, { id: 3, blockedBy: [1] }, { id: 3, unknown: 1 }]) {
+    assert.equal(prepare(args).action, undefined);
+    assert.equal(valid(prepare(args)), false);
+  }
+});
