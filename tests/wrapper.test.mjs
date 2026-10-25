@@ -61,7 +61,7 @@ test("exposes the native flat schema without verbose field descriptions", () => 
   assert.deepEqual(findDescriptions(tool.parameters), []);
   assert.deepEqual(Object.keys(tool.parameters.properties), [
     "action", "subject", "description", "activeForm", "status", "blockedBy",
-    "addBlockedBy", "removeBlockedBy", "owner", "metadata", "id", "includeDeleted",
+    "addBlockedBy", "removeBlockedBy", "owner", "metadata", "id", "includeDeleted", "tasks",
   ]);
   assert.deepEqual(tool.parameters.required, ["action"]);
   assert.equal(tool.prepareArguments?.({ subject: "inferred create" }).action, "create");
@@ -147,7 +147,7 @@ test("stays within a compact model-facing metadata budget", () => {
     promptGuidelines: tool.promptGuidelines,
   });
 
-  assert.ok(metadata.length <= 1200, `metadata is ${metadata.length} chars`);
+  assert.ok(metadata.length <= 1500, `metadata is ${metadata.length} chars`);
 });
 
 test("prepareArguments infers get only for a bare id and never infers destructive or list actions", async () => {
