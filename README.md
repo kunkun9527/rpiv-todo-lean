@@ -9,7 +9,7 @@
 </div>
 
 <!-- token-benchmark:summary:start -->
-> **Token benchmark: Lean 354, upstream `@juicesharp/rpiv-todo@2.15.0` 1,244 — 71.5% fewer.**
+> **Always-on context: 354 tokens vs. 1,244 for upstream `@juicesharp/rpiv-todo@2.15.0`, 71.5% less.**
 <!-- token-benchmark:summary:end -->
 
 A lean version of [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo). Task management runs on the upstream code; I only rewrote the tool prompt the model reads on every turn.
@@ -42,15 +42,16 @@ For multi-step work, create the list first; mark each step `in_progress` before 
 ## Token comparison
 
 <!-- token-benchmark:benchmark:start -->
-With only this extension enabled, its recurring model-facing initialization contribution is:
+With only this extension enabled, what the model reads on every turn:
 
-| Variant | Tool and prompt contribution | Total |
+| Variant | Breakdown | Total |
 | --- | --- | ---: |
 | Lean `@ssk_dev/rpiv-todo-lean@2.15.0` | `todo` (354) | **354** |
 | Upstream `@juicesharp/rpiv-todo@2.15.0` | `todo` (1,244) | **1,244** |
 
-This saves **890 tokens (71.5%)**.
-Measured with Pi 1.4.0 in separate temporary processes with empty working directories and configuration. Built-in tools, skills, context files, session history, user messages, unrelated extensions, runtime UI, and slash commands are excluded; `before_agent_start` additions are included. Tokens are a fixed character-proxy estimate using `ceil(characters / 4)`, not provider tokenizer billing.
+That is **890 tokens (71.5%)** less.
+
+<sub>Method: Pi 1.4.0, each variant measured in its own temporary process with an empty working directory and configuration. Built-in tools, skills, context files, session history, user messages, other extensions, runtime UI and slash commands are not counted; `before_agent_start` additions are. Tokens are estimated as `ceil(characters / 4)`, not billed tokens.</sub>
 <!-- token-benchmark:benchmark:end -->
 
 ## Development

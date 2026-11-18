@@ -9,7 +9,7 @@
 </div>
 
 <!-- token-benchmark:summary:start -->
-> **Token 基准：Lean 354，上游 `@juicesharp/rpiv-todo@2.15.0` 1,244，减少 71.5%。**
+> **常驻上下文：Lean 354 tokens，上游 `@juicesharp/rpiv-todo@2.15.0` 1,244 tokens，少 71.5%。**
 <!-- token-benchmark:summary:end -->
 
 [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo) 的精简版。任务管理直接调用上游的实现，我只重写了模型每轮都要读的工具说明。
@@ -42,15 +42,16 @@ pi install npm:@ssk_dev/rpiv-todo-lean
 ## Token 对比
 
 <!-- token-benchmark:benchmark:start -->
-单独启用本扩展时，模型可见的常驻初始化上下文如下：
+只启用这一个扩展时，模型每轮都会读到的内容：
 
-| 版本 | 工具与 Prompt 构成 | 合计 |
+| 版本 | 构成 | 合计 |
 | --- | --- | ---: |
 | Lean `@ssk_dev/rpiv-todo-lean@2.15.0` | `todo` (354) | **354** |
 | 上游 `@juicesharp/rpiv-todo@2.15.0` | `todo` (1,244) | **1,244** |
 
-节省 **890 tokens（71.5%）**。
-测量环境为 Pi 1.4.0 的独立临时进程、空白工作目录与空白配置。排除内置工具、Skills、上下文文件、会话历史、用户消息、无关扩展、运行时 UI 与 Slash Commands；计入扩展的 `before_agent_start` 注入。Token 是按 `ceil(字符数 / 4)` 计算的固定字符代理估算，并非模型 tokenizer 实际计费值。
+少 **890 tokens（71.5%）**。
+
+<sub>测量方式：Pi 1.4.0，每个版本在独立的临时进程里测，工作目录和配置都是空的。不计内置工具、Skills、上下文文件、会话历史、用户消息、其他扩展、运行时 UI 和 Slash Commands；计入 `before_agent_start` 注入的内容。Token 按 `ceil(字符数 / 4)` 估算，不是实际计费值。</sub>
 <!-- token-benchmark:benchmark:end -->
 
 ## 开发

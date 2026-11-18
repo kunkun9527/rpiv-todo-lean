@@ -2,7 +2,7 @@
   "name": "@ssk_dev/rpiv-todo-lean",
   "version": "2.15.0",
   "type": "module",
-  "description": "Lean Pi todo extension with full features: 246 initial tokens (72.8% fewer than current upstream).",
+  "description": "Lean Pi version of rpiv-todo: the same todo tracking with a much shorter tool prompt.",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
