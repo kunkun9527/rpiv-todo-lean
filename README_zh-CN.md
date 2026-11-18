@@ -9,7 +9,7 @@
 </div>
 
 <!-- token-benchmark:summary:start -->
-> **常驻上下文：Lean 354 tokens，上游 `@juicesharp/rpiv-todo@2.15.0` 1,244 tokens，少 71.5%。**
+<p align="center"><img src="assets/chart.zh-CN.svg" alt="常驻上下文：上游 1,244 tokens，精简版 354，少 71.5%" width="800"></p>
 <!-- token-benchmark:summary:end -->
 
 [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo) 的精简版。任务管理直接调用上游的实现，我只重写了模型每轮都要读的工具说明。
@@ -48,8 +48,6 @@ pi install npm:@ssk_dev/rpiv-todo-lean
 | --- | --- | ---: |
 | Lean `@ssk_dev/rpiv-todo-lean@2.15.0` | `todo` (354) | **354** |
 | 上游 `@juicesharp/rpiv-todo@2.15.0` | `todo` (1,244) | **1,244** |
-
-少 **890 tokens（71.5%）**。
 
 <sub>测量方式：Pi 1.4.0，每个版本在独立的临时进程里测，工作目录和配置都是空的。不计内置工具、Skills、上下文文件、会话历史、用户消息、其他扩展、运行时 UI 和 Slash Commands；计入 `before_agent_start` 注入的内容。Token 按 `ceil(字符数 / 4)` 估算，不是实际计费值。</sub>
 <!-- token-benchmark:benchmark:end -->
