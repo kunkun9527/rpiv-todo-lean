@@ -1,15 +1,45 @@
-# @ssk_dev/rpiv-todo-lean
+<div align="center">
+
+# rpiv-todo-lean
+
+**任务清单功能一项不少，工具说明短得多。**
+
+[English](README.md) · 完整配置：[My Lean Pi Setup](https://github.com/kunkun9527/my-lean-pi-setup)
+
+</div>
 
 <!-- token-benchmark:summary:start -->
 > **Token 基准：Lean 354，上游 `@juicesharp/rpiv-todo@2.15.0` 1,244，减少 71.5%。**
 <!-- token-benchmark:summary:end -->
-> **完整配置参考：** [查看 Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
 
-[English](README.md)
+[`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo) 的精简版。任务管理直接调用上游的实现，我只重写了模型每轮都要读的工具说明。
 
-基于 [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo) 的精简封装。在完整保留任务生命周期管理功能的同时，去除冗余的字段说明，显著降低上下文占用。
+## 安装
 
-## 初始化上下文占用对比
+```bash
+pi install npm:@ssk_dev/rpiv-todo-lean
+```
+
+不要和上游或其他 `rpiv-todo` 包装同时安装，否则 `todo` 工具会注册两次。
+
+## 和上游比
+
+**保留**：创建、查看、更新、删除、清空任务；状态流转、依赖关系（`blockedBy`）、元数据、批量创建（`tasks[]`）、回放记录，以及任务浮层 UI。
+
+**精简**：schema 结构不变，只删掉重复的字段说明和冗长的使用指南，保留模型用好它必需的规则。
+
+**新增**：
+
+- **补全漏写的 `action`**：模型最常犯的错是忘写 `action`。只在不会猜错时自动补上：有 `subject` 补成 `create`，有 `id` 和要改的字段补成 `update`，只有 `id` 补成 `get`。`delete`、`clear`、`list` 从不猜。
+- **RPC 计划面板**：RPC 模式下，create/update/delete 的结果会附上 `- [x] 步骤` 清单，codexhost（Codex Desktop）等宿主会据此显示原生计划面板。交互模式的输出不变。
+
+## 用法
+
+模型只会看到一个工具 `todo`，支持 `create`、`list`、`get`、`update`、`delete`、`clear`。
+
+做多步任务时，先建好清单；每一步开始前标成 `in_progress`，做完马上标成 `completed`。一次只推进一步，不要留到最后一起标。
+
+## Token 对比
 
 <!-- token-benchmark:benchmark:start -->
 单独启用本扩展时，模型可见的常驻初始化上下文如下：
@@ -23,43 +53,13 @@
 测量环境为 Pi 1.4.0 的独立临时进程、空白工作目录与空白配置。排除内置工具、Skills、上下文文件、会话历史、用户消息、无关扩展、运行时 UI 与 Slash Commands；计入扩展的 `before_agent_start` 注入。Token 是按 `ceil(字符数 / 4)` 计算的固定字符代理估算，并非模型 tokenizer 实际计费值。
 <!-- token-benchmark:benchmark:end -->
 
-## 核心特性
-
-* 完整任务管理：支持任务的创建、查询、详情查看、状态更新、删除和清空。
-* 状态与依赖追踪：完整保留状态流转、任务依赖、元数据、命令回放等所有上游能力。
-* 精简 Prompt 结构：保留原生扁平 Schema，剔除冗长啰嗦的字段描述，保留核心工作流约束。
-* RPC 宿主计划面板：RPC 模式下，create/update/delete 的结果会附带 `- [x] 步骤` 清单，codexhost（Codex Desktop）等宿主据此显示原生计划面板；交互模式输出不变。
-
-## 安装
-
-```bash
-pi install npm:@ssk_dev/rpiv-todo-lean
-```
-
-请勿与其它 `rpiv-todo` 包装扩展同时加载，以防重复注册工具。
-
-## 使用方法
-
-模型仅会看到一个工具：
-
-```text
-todo
-```
-
-支持的操作包括 `create`、`list`、`get`、`update`、`delete` 和 `clear`。处理多步骤工作时，先创建任务列表，每一步开始前标记为 `in_progress`，完成后立即标记为 `completed`；一次只处理一步，不要留到最后批量标记。缺少 `action` 时仅在无歧义时自动推断：有 `subject` → `create`，`id` 加待修改字段 → `update`，只有 `id` → `get`；`delete`、`clear`、`list` 永不猜测。
-
-## 版本说明
-
-- Lean 包装层：`2.13.12`
-- 上游依赖锁定为 `@juicesharp/rpiv-todo@2.15.0` 和 `@juicesharp/rpiv-i18n@2.15.0`。
-
-## 本地开发
+## 开发
 
 ```bash
 npm ci
 npm run check
 ```
 
-## 开源协议与致谢
+## 协议与致谢
 
-MIT 协议。本项目封装自采用 MIT 协议的 [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo)。
+MIT。任务管理功能来自 [@juicesharp](https://github.com/juicesharp) 的 [`rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo)（MIT）。

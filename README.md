@@ -1,15 +1,45 @@
-# @ssk_dev/rpiv-todo-lean
+<div align="center">
+
+# rpiv-todo-lean
+
+**Full task tracking for Pi, with a much shorter tool prompt.**
+
+[简体中文](https://github.com/kunkun9527/rpiv-todo-lean/blob/main/README_zh-CN.md) · Full setup: [My Lean Pi Setup](https://github.com/kunkun9527/my-lean-pi-setup)
+
+</div>
 
 <!-- token-benchmark:summary:start -->
 > **Token benchmark: Lean 354, upstream `@juicesharp/rpiv-todo@2.15.0` 1,244 — 71.5% fewer.**
 <!-- token-benchmark:summary:end -->
-> [See my full setup for Pi](https://github.com/kunkun9527/my-lean-pi-setup)
 
-[简体中文](https://github.com/kunkun9527/rpiv-todo-lean/blob/main/README_zh-CN.md)
+A lean version of [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo). Task management runs on the upstream code; I only rewrote the tool prompt the model reads on every turn.
 
-A lightweight Pi wrapper for [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo). It preserves the complete task management engine while drastically reducing tool description overhead in the system prompt.
+## Install
 
-## Context Footprint Benchmark
+```bash
+pi install npm:@ssk_dev/rpiv-todo-lean
+```
+
+Don't install it alongside upstream or another `rpiv-todo` wrapper, or the `todo` tool gets registered twice.
+
+## Compared with upstream
+
+**Kept**: creating, viewing, updating, deleting and clearing tasks; status changes, dependencies (`blockedBy`), metadata, batch creation (`tasks[]`), replay logs, and the task overlay UI.
+
+**Trimmed**: the schema keeps its shape; only repeated field descriptions and long usage guidelines are gone, while the rules the model needs to use it well stay.
+
+**Added**:
+
+- **Fills in a missing `action`**: forgetting `action` is the model's most common mistake. It is filled in only when it can't be wrong: `subject` becomes `create`, `id` plus fields to change becomes `update`, a bare `id` becomes `get`. `delete`, `clear` and `list` are never guessed.
+- **RPC plan panel**: in RPC mode, create/update/delete results end with a `- [x] step` checklist, so hosts such as codexhost (Codex Desktop) show their native plan panel. Interactive mode output is unchanged.
+
+## Usage
+
+The model sees a single `todo` tool with `create`, `list`, `get`, `update`, `delete` and `clear`.
+
+For multi-step work, create the list first; mark each step `in_progress` before starting it and `completed` as soon as it is done. One step at a time, never marked all at once at the end.
+
+## Token comparison
 
 <!-- token-benchmark:benchmark:start -->
 With only this extension enabled, its recurring model-facing initialization contribution is:
@@ -23,36 +53,6 @@ This saves **890 tokens (71.5%)**.
 Measured with Pi 1.4.0 in separate temporary processes with empty working directories and configuration. Built-in tools, skills, context files, session history, user messages, unrelated extensions, runtime UI, and slash commands are excluded; `before_agent_start` additions are included. Tokens are a fixed character-proxy estimate using `ceil(characters / 4)`, not provider tokenizer billing.
 <!-- token-benchmark:benchmark:end -->
 
-## Core Features
-
-* Full task lifecycle: Supports creating, listing, viewing, updating, deleting, and clearing tasks.
-* Dependencies and tracking: Manages status transitions, dependencies, metadata, commands, and replay logs.
-* Concise schema: Keeps the native flat schema while removing repetitive field documentation and wordy prompt guidelines.
-* RPC host plans: In RPC mode, create/update/delete results append a `- [x] step` checklist, so hosts such as codexhost (Codex Desktop) show the native plan panel. Interactive mode output is unchanged.
-
-## Installation
-
-```bash
-pi install npm:@ssk_dev/rpiv-todo-lean
-```
-
-Do not load this alongside another `rpiv-todo` wrapper to avoid registering duplicate tools.
-
-## Usage
-
-The model interacts with a single tool:
-
-```text
-todo
-```
-
-Supported actions include `create`, `list`, `get`, `update`, `delete`, and `clear`. For multi-step tasks, create the items, set each step `in_progress` before starting it, and mark it `completed` as soon as it finishes — one at a time, never batched at the end. A missing `action` is inferred only when unambiguous: `subject` → `create`, `id` plus fields to change → `update`, a bare `id` → `get`; `delete`, `clear` and `list` are never guessed.
-
-## Versions
-
-- Lean wrapper: `2.13.12`
-- Upstream dependencies are pinned to `@juicesharp/rpiv-todo@2.15.0` and `@juicesharp/rpiv-i18n@2.15.0`.
-
 ## Development
 
 ```bash
@@ -62,4 +62,4 @@ npm run check
 
 ## License
 
-MIT. This project wraps the MIT-licensed [`@juicesharp/rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo).
+MIT. Task management comes from [`rpiv-todo`](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo) by [@juicesharp](https://github.com/juicesharp) (MIT).
